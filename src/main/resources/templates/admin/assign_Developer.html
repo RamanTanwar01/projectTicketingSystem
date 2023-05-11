@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Developer</title>
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+    </script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js">
+    </script>
+    <link rel= "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"/>
+</head>
+<body>
+<!--Navigation Bar-->
+<nav class="fixed-top navbar navbar-expand-lg navbar-dark bg-primary">
+<!--    <a class="navbar-brand color-white">Project Ticketing System</a>-->
+    <th:text class="navbar-brand">Project Ticketing System</th:text>
+<!--    <h2>Project Ticketing System</h2>-->
+
+</nav>
+<!--End of Navigation Bar-->
+
+<section >
+
+    <div class="card mr-3 mt-3">
+        <div class="card-body">
+            <div class="container-fluid mt-1">
+
+
+                <!--Message Box-->
+                <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                    <p class="text-center" th:text="${session.message.content}"></p>
+                    <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-8 offset-md-2">
+                        <form action="#"
+                              th:object="${project}"
+                              method="post"
+                              th:action="@{/admin/processAssign}"
+                              class="mt-2">
+
+                            <div class="container text-center">
+                                <h2>Select Developer</h2>
+                                <div class="bs-multiselect">
+                                    <select id = "multiselect" multiple = "multiple">
+
+                                        <option th:each="developer: ${developerList}" th:text="${developer.email}"></option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--      Hidden Tag-->
+                            <div>
+                                <input type="hidden" name="id" th:value="${id}"/>
+                            </div>
+
+                            <!--  Submit Button   -->
+                            <div class="container text-center">
+                                <button class="btn btn-primary">Assign</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script>
+$(document).ready(function() {
+$('#multiselect').multiselect({
+includeSelectAllOption: true,
+enableFiltering: true,
+enableCaseInsensitiveFiltering: true,
+filterPlaceholder:'Search Here..'
+});
+});
+</script>
+</body>
+</html>

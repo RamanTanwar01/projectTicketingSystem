@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/admin_base::Layout(~{::section})"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>This is Adding Project Page</title>
+</head>
+<body>
+<section >
+
+    <div class="card mr-3 mt-3">
+        <div class="card-body">
+            <h1 class="text-center mt-5">Add Task</h1>
+            <div class="container-fluid mt-1">
+
+
+                <!--Message Box-->
+                <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                    <p class="text-center" th:text="${session.message.content}"></p>
+                    <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-8 offset-md-2">
+                        <form action="#"
+                              th:object="${task}"
+                              enctype="multipart/form-data"
+                              method="post"
+                              th:action="@{/admin/processTask}"
+                              class="mt-2">
+
+                            <!--  Task Title -->
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </div>
+                                <input type="text" id="title" name="Title" placeholder="Enter Task Title" class="form-control"/>
+                            </div>
+
+                            <!--  Task Description  -->
+
+                            <div class="form-group mt-3">
+                                <textarea placeholder="Enter Task Description Here" name="description" id="description" class="form-control" cols="15" rows="5" ></textarea>
+                            </div>
+
+                            <!--Priority Fields-->
+                            <div class="form-group">
+                                <label for="priority">Priority</label>
+                                <select name="priority" class="form-control" id="priority">
+                                    <option>Critical</option>
+                                    <option>Major</option>
+                                    <option>Moderate</option>
+                                    <option>Minor</option>
+                                    <option>Cosmetic</option>
+                                </select>
+                            </div>
+
+                            <!--  Assignee -->
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </div>
+                                <input type="text"  name="Assignee" placeholder="Enter Assignee userName" class="form-control"/>
+                            </div>
+
+                            <!--  Assigned To -->
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </div>
+                                <input type="text" id="assignedTo" name="assignedTo" placeholder="Enter Developer userName" class="form-control"/>
+                            </div>
+
+                     <!--      Hidden Tag-->
+                            <div>
+                                <input type="hidden" name="id" th:value="${id}"/>
+                            </div>
+
+                            <!--  Submit Button   -->
+                            <div class="container text-center mt-2">
+                                <button class="btn btn-outline-primary">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/admin_base::Layout(~{::section})"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>View Projects</title>
+</head>
+<body>
+<section >
+    <div class="card mr-3 ml-3 mt-4">
+        <div class="card-body ">
+            <h1 class="text-center">Developer</h1>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Skills</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="developerList : ${developerList}">
+                    <td th:text="${developerList.firstName}"></td>
+                    <td th:text="${developerList.lastName}"></td>
+                    <td th:text="${developerList.email}"></td>
+                    <td th:text="${developerList.role}"></td>
+                    <td th:text="${developerList.skills}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>
+</body>
+</html>

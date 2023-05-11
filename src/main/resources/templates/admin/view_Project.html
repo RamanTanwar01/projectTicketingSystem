@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/admin_base::Layout(~{::section})"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>View Projects</title>
+</head>
+<body>
+<section >
+  <div class="card mr-3 ml-3 mt-4">
+    <div class="card-body ">
+      <h1 class="text-center">Projects</h1>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Sr. No.</th>
+          <th scope="col">Project Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">File</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="projectList : ${viewList}">
+          <th scope="row" th:text="${projectList.id}"></th>
+          <td th:text="${projectList.projectName}"></td>
+          <td th:text="${projectList.projectDescription}"></td>
+          <td th:text="${projectList.File}"></td>
+          <td>
+<!--            <a th:href="@{'/admin/addTask/'+ ${projectList.id}}" class="btn btn-primary btn-sm">Add Task</a>-->
+<!--            <a th:href="@{'/admin/viewTask/'+ ${projectList.id}}" class="btn btn-info btn-sm">View Task</a>-->
+<!--            <a th:href="@{'/admin/assignDeveloper/'+ ${projectList.id}}" class="btn btn-secondary btn-sm">Assign</a>-->
+
+            <div class="dropdown">
+              <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" th:href="@{'/admin/addTask/'+ ${projectList.id}}">Add Task</a>
+                <a class="dropdown-item" th:href="@{'/admin/viewTask/'+ ${projectList.id}}">View Task</a>
+                <a class="dropdown-item" th:href="@{'/admin/assignDeveloper/'+ ${projectList.id}}">Assign</a>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</section>
+</body>
+</html>

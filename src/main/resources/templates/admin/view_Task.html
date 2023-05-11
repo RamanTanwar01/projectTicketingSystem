@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="admin/admin_base::Layout(~{::section})"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>View Tasks</title>
+</head>
+<body>
+<section >
+    <div class="card mt-4">
+        <div class="card-body">
+            <h1 class="text-center">Tasks</h1>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Assignee</th>
+                    <th scope="col">Assigned To</th>
+                    <th scope="col">Creation Date</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Completed</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="viewTask : ${viewTask}">
+                    <td th:text="${viewTask.title}"></td>
+                    <td th:text="${viewTask.description}"></td>
+                    <td th:text="${viewTask.priority}"></td>
+                    <td th:text="${viewTask.assignee}"></td>
+                    <td th:text="${viewTask.assignedTo}"></td>
+                    <td th:text="${viewTask.creationDate}"></td>
+                    <td th:text="${viewTask.deadline}"></td>
+                    <td th:text="${viewTask.completed}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>
+</body>
+</html>
